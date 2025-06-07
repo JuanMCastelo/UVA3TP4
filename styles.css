@@ -234,3 +234,14 @@ main {
 .navbar-nav .nav-link:hover {
   color: var(--text-page) !important;
 }
+
+footer {
+  background-color: var(--bg-nav);
+  color: var(--text-nav);
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  padding: 1rem 0;
+}
