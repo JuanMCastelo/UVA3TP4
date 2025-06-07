@@ -235,13 +235,23 @@ main {
   color: var(--text-page) !important;
 }
 
+/* ---------------------------
+   FOOTER
+--------------------------- */
 footer {
   background-color: var(--bg-nav);
-  color: var(--text-nav);
-  text-align: center;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  padding: 1rem 0;
+  color:            var(--text-nav);
+  text-align:       center;
+  margin-top:       auto;      /* empuja hacia abajo cuando el contenido falta */
+  padding:          1rem 0;
+  font-size:        0.875rem;
+}
+
+/* si quieres un pequeño efecto hover sobre el texto: */
+footer p {
+  margin: 0;
+  transition: color 0.2s;
+}
+footer p:hover {
+  color: var(--text-page);
 }
