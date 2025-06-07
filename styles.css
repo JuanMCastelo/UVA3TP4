@@ -1,0 +1,236 @@
+/* Importa tipografía */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+/* -----------------------------------
+   PALETA DE COLORES
+----------------------------------- */
+:root {
+  --bg-page:       #ffffff;
+  --text-page:     #212529;
+  --bg-nav:        #343a40;
+  --text-nav:      #ffffff;
+  --bg-card:       #ffffff;
+  --bg-section:    #f8f9fa;
+  --border-color:  #dee2e6;
+  --text-muted:    #6c757d;
+  --bg-form:       #ffffff;
+}
+
+[data-theme="dark"] {
+  --bg-page:       #121212;
+  --text-page:     #e4e4e4;
+  --bg-nav:        #1f1f1f;
+  --text-nav:      #cccccc;
+  --bg-card:       #1f1f1f;
+  --bg-section:    #2a2a2a;
+  --border-color:  #444;
+  --text-muted:    #aaaaaa;
+  --bg-form:       #2a2a2a;
+}
+
+/* -----------------------------------
+   ESTILOS GLOBALES
+----------------------------------- */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-page);
+  color:            var(--text-page);
+  display:          flex;
+  flex-direction:   column;
+  min-height:       100vh;
+}
+
+main {
+  flex: 1;
+}
+
+.navbar {
+  background-color: var(--bg-nav) !important;
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
+  color: var(--text-nav) !important;
+}
+
+/* -----------------------------------
+   APP DE CHISTES
+----------------------------------- */
+.joke-container {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: var(--bg-card);
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.joke-text {
+  font-size: 1.5rem;
+  min-height: 4rem;
+}
+
+.joke-buttons {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.joke-buttons button {
+  min-width: 120px;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-page);
+}
+
+/* -----------------------------------
+   ANIMACIONES REACT
+----------------------------------- */
+.fade-enter {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+.fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 500ms, transform 500ms;
+}
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 500ms, transform 500ms;
+}
+
+/* -----------------------------------
+   SECCIÓN “SOBRE MÍ”
+----------------------------------- */
+.sobre-mi-seccion {
+  padding: 3rem 0;
+}
+
+.sobre-mi-box {
+  border:           1px solid var(--border-color);
+  border-radius:    0.5rem;
+  background-color: var(--bg-card);
+  padding:          2rem;
+  box-shadow:       0 4px 8px rgba(0,0,0,0.05);
+  transition:       transform 0.3s ease;
+}
+.sobre-mi-box:hover {
+  transform: translateY(-3px);
+}
+
+.perfil-img {
+  width:       100%;
+  max-width:   300px;
+  border-radius: 10%;
+  margin-bottom: 1rem;
+}
+
+.texto-box {
+  font-size:   1.2rem;
+  line-height: 1.7;
+  color:       var(--text-page);
+}
+
+.introduccion {
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.hobbies {
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* -----------------------------------
+   SECCIÓN “ACERCA-DE” (TEXTO E ICONOS)
+----------------------------------- */
+.acerca-de {
+  text-align: center;
+}
+
+.acerca-de h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.acerca-de p {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+/* -----------------------------------
+   ICONOS SOCIALES
+----------------------------------- */
+.social-icons {
+  margin: 2rem 0;
+}
+
+.social-icons a {
+  margin: 0 0.75rem;
+  font-size: 2rem;
+  color: var(--text-page);
+  transition: transform 0.2s;
+}
+
+.social-icons a:hover {
+  transform: scale(1.1);
+  color: var(--text-page);
+}
+
+/* -----------------------------------
+   CONTACTO
+----------------------------------- */
+.contact {
+  margin-top: 1rem;
+}
+
+.contact a {
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: var(--text-page);
+  text-decoration: none;
+}
+
+.contact a:hover {
+  text-decoration: underline;
+}
+
+/* Asegúrate de que todos los nav-links tengan posición relativa */
+.navbar-nav .nav-link {
+  position: relative;
+  transition: color 0.2s;
+}
+
+/* Línea base: sin ancho */
+.navbar-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;       /* ajusta si quieres que quede más abajo */
+  left: 0;
+  width: 0;
+  height: 2px;     /* grosor */
+  background-color: var(--text-nav);
+  transition: width 0.3s;
+}
+
+/* Hover: expande la línea hasta el 100% del ancho */
+.navbar-nav .nav-link:hover::after {
+  width: 100%;
+}
+
+/* Active: línea permanente */
+.navbar-nav .nav-link.active::after {
+  width: 100%;
+}
+
+/* Opcional: cambia ligeramente el color al hacer hover */
+.navbar-nav .nav-link:hover {
+  color: var(--text-page) !important;
+}
