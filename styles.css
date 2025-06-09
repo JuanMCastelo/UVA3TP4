@@ -10,10 +10,8 @@
   --bg-nav:        #343a40;
   --text-nav:      #ffffff;
   --bg-card:       #ffffff;
-  --bg-section:    #f8f9fa;
   --border-color:  #dee2e6;
   --text-muted:    #6c757d;
-  --bg-form:       #ffffff;
 }
 
 [data-theme="dark"] {
@@ -22,10 +20,8 @@
   --bg-nav:        #1f1f1f;
   --text-nav:      #cccccc;
   --bg-card:       #1f1f1f;
-  --bg-section:    #2a2a2a;
   --border-color:  #444;
   --text-muted:    #aaaaaa;
-  --bg-form:       #2a2a2a;
 }
 
 /* -----------------------------------
@@ -85,7 +81,7 @@ main {
 }
 
 /* -----------------------------------
-   ANIMACIONES REACT
+   ANIMACIONES
 ----------------------------------- */
 .fade-enter {
   opacity: 0;
@@ -108,10 +104,6 @@ main {
 /* -----------------------------------
    SECCIÓN “SOBRE MÍ”
 ----------------------------------- */
-.sobre-mi-seccion {
-  padding: 3rem 0;
-}
-
 .sobre-mi-box {
   border:           1px solid var(--border-color);
   border-radius:    0.5rem;
@@ -139,7 +131,6 @@ main {
 
 .introduccion {
   font-weight: 500;
-  margin-bottom: 1rem;
 }
 
 .hobbies {
@@ -147,17 +138,10 @@ main {
   color: var(--text-muted);
 }
 
-/* -----------------------------------
-   SECCIÓN “ACERCA-DE” (TEXTO E ICONOS)
------------------------------------ */
 .acerca-de {
   text-align: center;
 }
 
-.acerca-de h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
 
 .acerca-de p {
   font-size: 1.125rem;
@@ -181,7 +165,6 @@ main {
 
 .social-icons a:hover {
   transform: scale(1.1);
-  color: var(--text-page);
 }
 
 /* -----------------------------------
@@ -202,35 +185,30 @@ main {
   text-decoration: underline;
 }
 
-/* Asegúrate de que todos los nav-links tengan posición relativa */
+/* -----------------------------------
+   NAV UNDERLINE
+----------------------------------- */
 .navbar-nav .nav-link {
   position: relative;
   transition: color 0.2s;
 }
 
-/* Línea base: sin ancho */
 .navbar-nav .nav-link::after {
   content: '';
   position: absolute;
-  bottom: 0;       /* ajusta si quieres que quede más abajo */
+  bottom: 0;
   left: 0;
   width: 0;
-  height: 2px;     /* grosor */
+  height: 2px;
   background-color: var(--text-nav);
   transition: width 0.3s;
 }
 
-/* Hover: expande la línea hasta el 100% del ancho */
-.navbar-nav .nav-link:hover::after {
-  width: 100%;
-}
-
-/* Active: línea permanente */
+.navbar-nav .nav-link:hover::after,
 .navbar-nav .nav-link.active::after {
   width: 100%;
 }
 
-/* Opcional: cambia ligeramente el color al hacer hover */
 .navbar-nav .nav-link:hover {
   color: var(--text-page) !important;
 }
@@ -242,12 +220,11 @@ footer {
   background-color: var(--bg-nav);
   color:            var(--text-nav);
   text-align:       center;
-  margin-top:       auto;      /* empuja hacia abajo cuando el contenido falta */
+  margin-top:       auto;
   padding:          1rem 0;
   font-size:        0.875rem;
 }
 
-/* si quieres un pequeño efecto hover sobre el texto: */
 footer p {
   margin: 0;
   transition: color 0.2s;
