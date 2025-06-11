@@ -1,8 +1,8 @@
 const { useState } = React;
 const { CSSTransition, TransitionGroup } = ReactTransitionGroup;
 
-// Tu array de 10 chistes (puedes personalizar)
-const jokes = [
+// Chistes iniciales de respaldo
+const initialJokes = [
   "—¡Camarero! Este filete tiene muchos nervios. —Normal, es la primera vez que se lo comen.",
   "¿Cuál es el último animal que subió al arca de Noé? El del-fin.",
   "—Oye, ¿cuál es tu plato favorito y por qué? —Pues el hondo, porque cabe más comida.",
@@ -16,25 +16,60 @@ const jokes = [
 ];
 
 function JokeApp() {
+  const [jokes, setJokes] = useState(initialJokes);
   const [index, setIndex] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  const prev = () =>
-    setIndex((i) => (i - 1 + jokes.length) % jokes.length);
-  const next = () =>
-    setIndex((i) => (i + 1) % jokes.length);
+  const fetchJoke = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch("https://v2.jokeapi.dev/joke/Any?lang=es&type=single");
+      const data = await res.json();
+      const newJoke = data.joke || "No se encontró chiste.";
+      setJokes((prev) => [...prev, newJoke]);
+      setIndex(jokes.length);
+    } catch (err) {
+      console.error(err);
+      setError("Hubo un problema al obtener un nuevo chiste.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const prev = () => {
+    if (index > 0) setIndex((i) => i - 1);
+  };
+
+  const next = () => {
+    if (index < jokes.length - 1) {
+      setIndex((i) => i + 1);
+    } else {
+      fetchJoke();
+    }
+  };
+
+  const copy = () => {
+    navigator.clipboard.writeText(jokes[index]);
+  };
 
   return (
     <div className="joke-container">
       <TransitionGroup>
         <CSSTransition key={index} timeout={500} classNames="fade">
-          <p className="joke-text">{jokes[index]}</p>
+          <p className="joke-text">{loading ? 'Cargando...' : jokes[index]}</p>
         </CSSTransition>
       </TransitionGroup>
+      {error && <p className="text-danger">{error}</p>}
       <div className="joke-buttons d-flex justify-content-between">
-        <button className="btn btn-outline-primary" onClick={prev}>
+        <button className="btn btn-outline-primary" onClick={prev} disabled={index === 0 || loading}>
           Anterior
         </button>
-        <button className="btn btn-outline-primary" onClick={next}>
+        <button className="btn btn-outline-secondary" onClick={copy} disabled={loading}>
+          Copiar
+        </button>
+        <button className="btn btn-outline-primary" onClick={next} disabled={loading}>
           Siguiente
         </button>
       </div>
