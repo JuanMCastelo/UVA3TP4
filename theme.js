@@ -1,7 +1,7 @@
 // theme.js
 
 document.addEventListener('DOMContentLoaded', () => {
-  const root    = document.documentElement;
+  const root     = document.documentElement;
   const btnLight = document.getElementById('btn-light');
   const btnDark  = document.getElementById('btn-dark');
 
@@ -18,4 +18,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // 3) Listeners en los botones
   btnLight.addEventListener('click', () => setTheme('light'));
   btnDark.addEventListener('click', () => setTheme('dark'));
+
+  // Permite alternar pulsando la tecla "t"
+  document.addEventListener('keydown', (e) => {
+    if (e.key.toLowerCase() === 't') {
+      const current = root.getAttribute('data-theme');
+      setTheme(current === 'light' ? 'dark' : 'light');
+    }
+  });
 });
